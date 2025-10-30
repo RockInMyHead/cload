@@ -20,6 +20,23 @@ const BILLING_CONSTANTS = {
   MAX_FILE_SIZE_MB: 100 // Максимальный размер файла
 };
 
+// Функция для безопасного декодирования имен файлов
+const decodeFileName = (filename) => {
+  try {
+    // Сначала пробуем декодировать как UTF-8
+    return decodeURIComponent(filename);
+  } catch (e) {
+    try {
+      // Если не получилось, пробуем декодировать из latin1 в UTF-8
+      const buffer = Buffer.from(filename, 'latin1');
+      return buffer.toString('utf8');
+    } catch (e2) {
+      // Если ничего не получилось, возвращаем как есть
+      return filename;
+    }
+  }
+};
+
 // Создаем папки для хранения
 const uploadsDir = path.join(__dirname, 'uploads');
 const usersDir = path.join(__dirname, 'data');
@@ -52,6 +69,14 @@ app.use(express.static(buildPath));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Middleware для правильной обработки multipart данных
+app.use((req, res, next) => {
+  if (req.headers['content-type'] && req.headers['content-type'].includes('multipart/form-data')) {
+    req.setEncoding('latin1');
+  }
+  next();
+});
+
 // Настройка multer для загрузки файлов
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -65,7 +90,8 @@ const storage = multer.diskStorage({
     cb(null, userUploadDir);
   },
   filename: (req, file, cb) => {
-    const uniqueName = `${uuidv4()}-${file.originalname}`;
+    const decodedName = decodeFileName(file.originalname);
+    const uniqueName = `${uuidv4()}-${decodedName}`;
     cb(null, uniqueName);
   }
 });
@@ -464,13 +490,14 @@ app.post('/api/upload', authenticateApiKey, upload.single('file'), (req, res) =>
     }
     
     // Создаем запись о файле
+    const decodedFileName = decodeFileName(req.file.originalname);
     const fileRecord = {
       id: uuidv4(),
       userId,
-      name: req.file.originalname,
+      name: decodedFileName,
       type: 'file',
       size: req.file.size,
-      path: path.posix.join(uploadPath, req.file.originalname),
+      path: path.posix.join(uploadPath, decodedFileName),
       filename: req.file.filename, // Имя файла на диске
       mimeType: req.file.mimetype,
       createdAt: new Date().toISOString(),
