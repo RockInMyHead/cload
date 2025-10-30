@@ -1,0 +1,30 @@
+#!/usr/bin/expect -f
+
+set password "x5dkf2Dvu2+G+K"
+set server "root@92.51.38.132"
+
+spawn ssh -o StrictHostKeyChecking=no $server
+expect "password:"
+send "$password\r"
+expect "#"
+
+send "cd ~\r"
+expect "#"
+
+send "pkill -f node\r"
+expect "#"
+
+send "tar -xzf build-update.tar.gz\r"
+expect "#"
+
+send "cd server\r"
+expect "#"
+
+send "node index.js &\r"
+expect "#"
+
+send "echo 'Server updated and restarted'\r"
+expect "#"
+
+send "exit\r"
+expect eof

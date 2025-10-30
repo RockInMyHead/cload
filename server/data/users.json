@@ -1,0 +1,65 @@
+[
+  {
+    "id": "355f75ea-fbf1-4e54-bf67-4fa9747538b9",
+    "name": "Тестовый пользователь",
+    "email": "test@example.com",
+    "password": "$2b$10$AR.FX93QF74ALzN62S59QOvq9k1SowCd1/hlxOg9zK6E8.xK0vaoC",
+    "apiKey": "WDX_355F75EA-FBF1-4E54-BF67-4FA9747538B9_MGM49F8S_IF6G23PRQL",
+    "createdAt": "2025-10-11T10:12:21.484Z",
+    "updatedAt": "2025-10-11T10:12:21.484Z"
+  },
+  {
+    "id": "68392d53-d7b3-43aa-91c9-bb6229a20a28",
+    "name": "API Тестер",
+    "email": "api-tester@windexs.com",
+    "password": "$2b$10$4GmQWQoiu0isxk7kYPMSbOQ2uVsqM5w98LpOyuv2sv4YNCKhDi.EO",
+    "apiKey": "WDX_68392D53-D7B3-43AA-91C9-BB6229A20A28_MGM49UKE_ZM6LF9PIH2",
+    "createdAt": "2025-10-11T10:12:41.342Z",
+    "updatedAt": "2025-10-11T10:12:41.342Z"
+  },
+  {
+    "id": "691ca98b-f2b0-46f0-b6a7-19045a43771f",
+    "name": "Администратор",
+    "email": "admin@windexs.com",
+    "password": "$2b$10$uT5jSqQlMKT6k59Doubygu9IhqKJ88BZjPpWT9A290EC2AGQwor6m",
+    "apiKey": "WDX_4BALQQVZ",
+    "createdAt": "2025-10-11T10:16:15.528Z",
+    "updatedAt": "2025-10-26T07:18:46.568Z"
+  },
+  {
+    "id": "d8730a1d-4962-4b1b-9ef8-f2d4b6ffc481",
+    "name": "Тест коротких ключей",
+    "email": "short@test.com",
+    "password": "$2b$10$RMqihcAxED0TvwGORuM8.eymSnOy20UCM8Yv2UJDOxVzZfnzxQa7.",
+    "apiKey": "WDX_3OI9DCLE",
+    "createdAt": "2025-10-11T10:42:17.654Z",
+    "updatedAt": "2025-10-11T10:42:17.654Z"
+  },
+  {
+    "id": "2fe5f614-da18-4549-a4ed-5ea3ea1ec77a",
+    "name": "артем",
+    "email": "artem@mail.ru",
+    "password": "$2b$10$VCAeoMOW7KKgPwgJFfemLOtxkTlhtXm4aD1vF2ARpFaHkxxUa/0GK",
+    "apiKey": "WDX_WR9YJVE3",
+    "createdAt": "2025-10-26T18:32:03.682Z",
+    "updatedAt": "2025-10-26T18:32:03.682Z"
+  },
+  {
+    "id": "b9e458f7-f104-4166-afcb-8d4a797ab98b",
+    "name": "артем",
+    "email": "p_k7@mail.ru",
+    "password": "$2b$10$jQ7fboH5GPUvI.ua5FL18.hXg5d1pon5nGjTKAeJ/obNwu8NP9CGO",
+    "apiKey": "WDX_Y6SQ2B2U",
+    "createdAt": "2025-10-26T19:08:08.549Z",
+    "updatedAt": "2025-10-26T19:27:11.786Z"
+  },
+  {
+    "id": "509fba56-8e3c-4ef8-8b9a-a291691a16c7",
+    "name": "артем",
+    "email": "p_k123@mail.ru",
+    "password": "$2b$10$Oi3v.p3IqXQCunG3ZCT9l.7f3fjEJWliSXrllAF0rgWyvfVupgFSO",
+    "apiKey": "WDX_MQRGG0P3",
+    "createdAt": "2025-10-26T20:29:33.975Z",
+    "updatedAt": "2025-10-26T20:47:20.106Z"
+  }
+]
