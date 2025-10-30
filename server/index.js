@@ -250,9 +250,16 @@ app.post('/api/register', async (req, res) => {
     // Нормализуем email (приводим к нижнему регистру и удаляем пробелы)
     const normalizedEmail = email.trim().toLowerCase();
     
+    console.log(`Попытка регистрации: email="${normalizedEmail}", всего пользователей=${users.length}`);
+    
     // Проверяем, существует ли пользователь
-    const existingUser = users.find(u => u.email.toLowerCase() === normalizedEmail);
+    const existingUser = users.find(u => {
+      if (!u.email) return false;
+      return u.email.toLowerCase() === normalizedEmail;
+    });
+    
     if (existingUser) {
+      console.log(`Email уже существует: ${normalizedEmail}`);
       return res.status(409).json({ 
         error: 'Пользователь с таким email уже существует'
       });
