@@ -247,8 +247,11 @@ app.post('/api/register', async (req, res) => {
       });
     }
     
+    // Нормализуем email (приводим к нижнему регистру и удаляем пробелы)
+    const normalizedEmail = email.trim().toLowerCase();
+    
     // Проверяем, существует ли пользователь
-    const existingUser = users.find(u => u.email === email);
+    const existingUser = users.find(u => u.email.toLowerCase() === normalizedEmail);
     if (existingUser) {
       return res.status(409).json({ 
         error: 'Пользователь с таким email уже существует'
@@ -263,7 +266,7 @@ app.post('/api/register', async (req, res) => {
     const newUser = {
       id: userId,
       name,
-      email,
+      email: normalizedEmail,
       password: hashedPassword,
       apiKey,
       balance: 0, // Баланс пользователя
@@ -300,8 +303,11 @@ app.post('/api/login', async (req, res) => {
       });
     }
     
+    // Нормализуем email (приводим к нижнему регистру и удаляем пробелы)
+    const normalizedEmail = email.trim().toLowerCase();
+
     // Ищем пользователя
-    const user = users.find(u => u.email === email);
+    const user = users.find(u => u.email.toLowerCase() === normalizedEmail);
     if (!user) {
       return res.status(401).json({ 
         error: 'Неверный email или пароль'
@@ -343,7 +349,9 @@ app.post('/api/key', async (req, res) => {
     if (!email || !password) {
       return res.status(400).json({ success: false, error: 'Email и пароль обязательны' });
     }
-    const user = users.find(u => u.email === email);
+    // Нормализуем email
+    const normalizedEmail = email.trim().toLowerCase();
+    const user = users.find(u => u.email.toLowerCase() === normalizedEmail);
     if (!user) {
       return res.status(401).json({ success: false, error: 'Неверный email или пароль' });
     }
@@ -847,37 +855,50 @@ app.use((error, req, res, next) => {
   res.status(500).json({ error: 'Внутренняя ошибка сервера' });
 });
 
-// 404 обработчик
-app.use((req, res) => {
-  res.status(404).json({ 
-    error: 'Endpoint не найден',
-    message: 'Проверьте правильность URL и метод запроса',
-    availableEndpoints: [
-      'GET /health',
-      'POST /api/register',
-      'POST /api/login',
-      'GET /api/user',
-      'GET /api/files',
-      'POST /api/upload',
-      'POST /api/folders',
-      'GET /api/files/:fileId',
-      'PUT /api/files/:fileId',
-      'DELETE /api/files/:fileId',
-      'GET /api/search',
-      'GET /api/download/:fileId'
-    ]
-  });
-});
-
 // Загружаем данные при запуске
 loadData();
 
 // Catch all handler: send back React's index.html file for any non-API routes
+// Должен быть ПЕРЕД 404 handler!
 app.use((req, res, next) => {
-  if (req.path.startsWith('/api/') || req.path.startsWith('/uploads/')) {
+  // Пропускаем API endpoints и статические файлы
+  if (req.path.startsWith('/api/') || req.path.startsWith('/uploads/') || req.path.startsWith('/static/')) {
     return next();
   }
+  // Для всех остальных маршрутов отправляем index.html (React Router обработает)
   res.sendFile(path.join(buildPath, 'index.html'));
+});
+
+// 404 обработчик только для API endpoints
+app.use((req, res, next) => {
+  // Если это API запрос, возвращаем JSON ошибку
+  if (req.path.startsWith('/api/')) {
+    return res.status(404).json({ 
+      error: 'Endpoint не найден',
+      message: 'Проверьте правильность URL и метод запроса',
+      availableEndpoints: [
+        'GET /health',
+        'POST /api/register',
+        'POST /api/login',
+        'GET /api/user',
+        'GET /api/files',
+        'POST /api/upload',
+        'POST /api/folders',
+        'GET /api/files/:fileId',
+        'PUT /api/files/:fileId',
+        'DELETE /api/files/:fileId',
+        'GET /api/search',
+        'GET /api/download/:fileId'
+      ]
+    });
+  }
+  // Для всех остальных запросов отправляем React приложение
+  res.sendFile(path.join(buildPath, 'index.html'), (err) => {
+    if (err) {
+      console.error('Ошибка отправки index.html:', err);
+      res.status(500).send('Ошибка сервера');
+    }
+  });
 });
 
 // Запускаем сервер

@@ -1,14 +1,5 @@
 [
   {
-    "id": "36f8cf55-ae14-47ee-b7fe-4ad85c15954b",
-    "userId": "68392d53-d7b3-43aa-91c9-bb6229a20a28",
-    "name": "Тестовая папка",
-    "type": "folder",
-    "path": "/Тестовая папка",
-    "createdAt": "2025-10-11T10:12:41.357Z",
-    "modifiedAt": "2025-10-11T10:12:41.357Z"
-  },
-  {
     "id": "4665a335-0807-4af2-b551-75d8f26ea85d",
     "userId": "691ca98b-f2b0-46f0-b6a7-19045a43771f",
     "name": "Демо папка",
@@ -20,79 +11,13 @@
   {
     "id": "907b1c03-8bba-4ce8-8a28-45320f3a178d",
     "userId": "691ca98b-f2b0-46f0-b6a7-19045a43771f",
-    "name": "ÐÐ¾Ð³Ð¾Ð²Ð¾Ñ ÐÐ Ð´Ð»Ñ ÐºÐ½Ð¸Ð³ (DIAGIX) #2.pdf",
+    "name": "ÐÐ¾Ð³Ð¾Ð²Ð¾Ñ ÐÐ Ð´Ð»Ñ ÐºÐ½Ð¸Ð³ (DIAGIX) #2.pdf",
     "type": "file",
     "size": 182139,
-    "path": "/ÐÐ¾Ð³Ð¾Ð²Ð¾Ñ ÐÐ Ð´Ð»Ñ ÐºÐ½Ð¸Ð³ (DIAGIX) #2.pdf",
-    "filename": "85c9a352-14bf-4003-96b1-4ff19fa6123d-ÐÐ¾Ð³Ð¾Ð²Ð¾Ñ ÐÐ Ð´Ð»Ñ ÐºÐ½Ð¸Ð³ (DIAGIX) #2.pdf",
+    "path": "/ÐÐ¾Ð³Ð¾Ð²Ð¾Ñ ÐÐ Ð´Ð»Ñ ÐºÐ½Ð¸Ð³ (DIAGIX) #2.pdf",
+    "filename": "85c9a352-14bf-4003-96b1-4ff19fa6123d-ÐÐ¾Ð³Ð¾Ð²Ð¾Ñ ÐÐ Ð´Ð»Ñ ÐºÐ½Ð¸Ð³ (DIAGIX) #2.pdf",
     "mimeType": "application/pdf",
     "createdAt": "2025-10-11T10:50:04.050Z",
     "modifiedAt": "2025-10-11T10:50:04.050Z"
-  },
-  {
-    "id": "251aa61a-3861-4f33-a36f-1e37ca91aa10",
-    "userId": "2fe5f614-da18-4549-a4ed-5ea3ea1ec77a",
-    "name": "image_1761100962.png",
-    "type": "file",
-    "size": 3904913,
-    "path": "/image_1761100962.png",
-    "filename": "63419500-6f39-40b6-b6ab-bcb4ffe81942-image_1761100962.png",
-    "mimeType": "image/png",
-    "createdAt": "2025-10-26T18:32:41.192Z",
-    "modifiedAt": "2025-10-26T18:32:41.192Z"
-  },
-  {
-    "id": "874721fb-1951-4075-b8cd-c024d55abbbd",
-    "userId": "509fba56-8e3c-4ef8-8b9a-a291691a16c7",
-    "name": "DATALOG (1).TXT",
-    "type": "file",
-    "size": 13273361,
-    "path": "/DATALOG (1).TXT",
-    "filename": "71e3e40e-8dc7-4bf3-a6e2-78da5e03ce68-DATALOG (1).TXT",
-    "mimeType": "text/plain",
-    "createdAt": "2025-10-26T21:12:06.372Z",
-    "modifiedAt": "2025-10-26T21:12:06.373Z"
-  },
-  {
-    "id": "300a95ce-a491-4ec3-9382-44cf28a51ef2",
-    "userId": "509fba56-8e3c-4ef8-8b9a-a291691a16c7",
-    "name": "_1761269570616.png",
-    "type": "file",
-    "size": 2980374,
-    "path": "/_1761269570616.png",
-    "filename": "48b40da4-fdc8-47a7-b014-d37bde43fdb7-_1761269570616.png",
-    "mimeType": "image/png",
-    "createdAt": "2025-10-26T21:12:12.045Z",
-    "modifiedAt": "2025-10-26T21:12:12.045Z"
-  },
-  {
-    "id": "a964a326-9c60-4121-9574-bc3523ae0ef0",
-    "userId": "509fba56-8e3c-4ef8-8b9a-a291691a16c7",
-    "name": "2025-05-13 10.05.18.mp4",
-    "type": "file",
-    "size": 9905744,
-    "path": "/2025-05-13 10.05.18.mp4",
-    "filename": "db768914-6c75-44fb-8f35-d7e7bcf22ae2-2025-05-13 10.05.18.mp4",
-    "mimeType": "video/mp4",
-    "createdAt": "2025-10-26T21:12:39.044Z",
-    "modifiedAt": "2025-10-26T21:12:39.044Z"
-  },
-  {
-    "id": "3b01604a-c167-4e64-9573-83c01c209bef",
-    "userId": "509fba56-8e3c-4ef8-8b9a-a291691a16c7",
-    "name": "Один",
-    "type": "folder",
-    "path": "/Один",
-    "createdAt": "2025-10-26T21:20:24.728Z",
-    "modifiedAt": "2025-10-26T21:20:24.728Z"
-  },
-  {
-    "id": "d0bf1672-3974-4742-a2b3-44d9c6fac27f",
-    "userId": "509fba56-8e3c-4ef8-8b9a-a291691a16c7",
-    "name": "два",
-    "type": "folder",
-    "path": "3b01604a-c167-4e64-9573-83c01c209bef/два",
-    "createdAt": "2025-10-26T21:20:48.521Z",
-    "modifiedAt": "2025-10-26T21:20:48.521Z"
   }
 ]

@@ -14,7 +14,7 @@ expect "#"
 send "pkill -f node\r"
 expect "#"
 
-send "tar -xzf build-update.tar.gz\r"
+send "tar -xzf build-update-v3.tar.gz\r"
 expect "#"
 
 send "cd server\r"

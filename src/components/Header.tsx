@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useAuth } from '../contexts/AuthContext';
 import { FiUser, FiLogOut, FiCloud, FiKey, FiCopy, FiCheck, FiMenu } from 'react-icons/fi';
+import { API_BASE_URL } from '../utils/api';
 
 const HeaderContainer = styled.header`
   background: #ffffff;
@@ -229,7 +230,6 @@ const UserEmail = styled.span`
   color: #666;
 `;
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001/api';
 
 const PaymentInfo = styled.div`
   margin-left: 20px;

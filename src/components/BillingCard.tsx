@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { FiHardDrive, FiAlertTriangle, FiCheckCircle } from 'react-icons/fi';
+import { API_BASE_URL } from '../utils/api';
 // Новые styled-компоненты для баланса и истории
 const BalanceContainer = styled.div`margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between;`;
 const BalanceLabel = styled.span`font-size: 14px; color: #666;`;
@@ -11,8 +12,6 @@ const HistoryTitle = styled.h4`margin: 0 0 10px; font-size: 16px; color: #333;`;
 const HistoryRow = styled.div`display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #e1e5e9; font-size: 14px;`;
 const HistoryDate = styled.span`color: #666;`;
 const HistoryUsed = styled.span`font-weight: 500; color: #333;`;
-
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001/api';
 
 const BillingContainer = styled.div`
   background: #ffffff;

@@ -1,0 +1,43 @@
+#!/usr/bin/expect -f
+
+set password "x5dkf2Dvu2+G+K"
+set server "root@92.51.38.132"
+
+# Copy build
+spawn scp -o StrictHostKeyChecking=no build-update-v5.tar.gz $server:~/build-update-v5.tar.gz
+expect "password:"
+send "$password\r"
+expect eof
+
+# Deploy
+spawn ssh -o StrictHostKeyChecking=no $server
+expect "password:"
+send "$password\r"
+expect "#"
+
+send "cd ~\r"
+expect "#"
+
+send "pkill -f node\r"
+expect "#"
+
+send "tar -xzf build-update-v5.tar.gz\r"
+expect "#"
+
+send "cd server\r"
+expect "#"
+
+send "node index.js > server.log 2>&1 &\r"
+expect "#"
+
+send "sleep 2\r"
+expect "#"
+
+send "ps aux | grep 'node index' | grep -v grep\r"
+expect "#"
+
+send "echo 'Final deployment with centralized API URLs completed'\r"
+expect "#"
+
+send "exit\r"
+expect eof

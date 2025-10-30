@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { FiX } from 'react-icons/fi';
 import { FileItem } from '../types/FileItem';
 import { useAuth } from '../contexts/AuthContext';
+import { getApiBaseUrl } from '../utils/api';
 
 const Overlay = styled.div`
   position: fixed;
@@ -57,8 +58,8 @@ const FileViewerModal: React.FC<Props> = ({ isOpen, file, onClose }) => {
     const i = Math.floor(Math.log(bytes) / Math.log(k));
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
   };
-  const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001/api';
-  const url = `/api/files/${file.id}`;
+  const API_BASE_URL = getApiBaseUrl();
+  const url = `${API_BASE_URL}/download/${file.id}?apiKey=${apiKey}`;
   const rawUrl = `${API_BASE_URL}/files/${file.id}/raw?apiKey=${apiKey}`;
   // Используем API endpoint для изображения, чтобы гарантировать корректные CORS заголовки
   const imageUrl = `${API_BASE_URL}/files/${file.id}/image?apiKey=${apiKey}`;
@@ -89,8 +90,42 @@ const FileViewerModal: React.FC<Props> = ({ isOpen, file, onClose }) => {
               />
             </pre>
           )}
-        {/* fallback download */}
-        <a href={url} download>Скачать файл</a>
+        {/* download button */}
+        <button
+          onClick={async () => {
+            try {
+              const response = await fetch(url);
+              if (!response.ok) throw new Error('Download failed');
+
+              const blob = await response.blob();
+              const downloadUrl = window.URL.createObjectURL(blob);
+
+              const a = document.createElement('a');
+              a.href = downloadUrl;
+              a.download = file.name;
+              document.body.appendChild(a);
+              a.click();
+              document.body.removeChild(a);
+
+              window.URL.revokeObjectURL(downloadUrl);
+            } catch (error) {
+              console.error('Download error:', error);
+              alert('Ошибка при скачивании файла');
+            }
+          }}
+          style={{
+            padding: '10px 20px',
+            background: '#8FBC8F',
+            color: 'white',
+            border: 'none',
+            borderRadius: '8px',
+            cursor: 'pointer',
+            fontSize: '14px',
+            marginTop: '20px'
+          }}
+        >
+          Скачать файл
+        </button>
       </Preview>
     </Content>
   </Overlay>

@@ -7,11 +7,11 @@ import FileViewerModal from './FileViewerModal';
 import { FileItem } from '../types/FileItem';
 import { v4 as uuidv4 } from 'uuid';
 import { useAuth } from '../contexts/AuthContext';
-import { 
-  FiUpload, 
-  FiFolderPlus, 
-  FiGrid, 
-  FiList, 
+import {
+  FiUpload,
+  FiFolderPlus,
+  FiGrid,
+  FiList,
   FiSearch,
   FiArrowLeft
 } from 'react-icons/fi';
@@ -19,8 +19,7 @@ import FileGrid from './FileGridNew';
 import FileList from './FileList';
 import './FileManager.css';
 import { formatBytes, formatDate, formatTime } from '../utils/format';
-
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001/api';
+import { API_BASE_URL } from '../utils/api';
 
 const FileManagerContainer = styled.div`
   height: 100%;

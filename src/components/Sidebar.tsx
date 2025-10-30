@@ -6,8 +6,7 @@ import { FileItem } from '../types/FileItem';
 import { FiHome, FiStar, FiTrash2, FiHardDrive, FiUser, FiSettings, FiDollarSign, FiKey } from 'react-icons/fi';
 import { FiCode } from 'react-icons/fi';
 import BillingCard from './BillingCard';
-
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001/api';
+import { API_BASE_URL } from '../utils/api';
 
 const SidebarContainer = styled.aside<{ isOpen?: boolean }>`
   width: 250px;

@@ -7,8 +7,7 @@ import Sidebar from './Sidebar';
 import FileManager from './FileManager';
 // import ApiKeyCard from './ApiKeyCard';
 import { FileItem } from '../types/FileItem';
-
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001/api';
+import { API_BASE_URL } from '../utils/api';
 
 const DashboardContainer = styled.div`
   min-height: 100vh;
