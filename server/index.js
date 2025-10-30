@@ -845,35 +845,24 @@ app.get('/api/billing/history', authenticateApiKey, (req, res) => {
 // Обработка ошибок
 app.use((error, req, res, next) => {
   console.error('Ошибка сервера:', error);
-  
+
   if (error instanceof multer.MulterError) {
     if (error.code === 'LIMIT_FILE_SIZE') {
       return res.status(413).json({ error: 'Файл слишком большой (максимум 100MB)' });
     }
   }
-  
+
   res.status(500).json({ error: 'Внутренняя ошибка сервера' });
 });
 
 // Загружаем данные при запуске
 loadData();
 
-// Catch all handler: send back React's index.html file for any non-API routes
-// Должен быть ПЕРЕД 404 handler!
-app.use((req, res, next) => {
-  // Пропускаем API endpoints и статические файлы
-  if (req.path.startsWith('/api/') || req.path.startsWith('/uploads/') || req.path.startsWith('/static/')) {
-    return next();
-  }
-  // Для всех остальных маршрутов отправляем index.html (React Router обработает)
-  res.sendFile(path.join(buildPath, 'index.html'));
-});
-
-// 404 обработчик только для API endpoints
-app.use((req, res, next) => {
-  // Если это API запрос, возвращаем JSON ошибку
+// Единый catch-all handler для всех запросов
+app.use((req, res) => {
+  // Если это API запрос, возвращаем JSON ошибку 404
   if (req.path.startsWith('/api/')) {
-    return res.status(404).json({ 
+    return res.status(404).json({
       error: 'Endpoint не найден',
       message: 'Проверьте правильность URL и метод запроса',
       availableEndpoints: [
@@ -892,7 +881,8 @@ app.use((req, res, next) => {
       ]
     });
   }
-  // Для всех остальных запросов отправляем React приложение
+
+  // Для всех остальных запросов (включая статические файлы и React роуты) отправляем index.html
   res.sendFile(path.join(buildPath, 'index.html'), (err) => {
     if (err) {
       console.error('Ошибка отправки index.html:', err);
